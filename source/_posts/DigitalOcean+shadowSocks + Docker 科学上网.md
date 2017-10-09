@@ -48,6 +48,9 @@ ps -aux | grep ***
 [使用shadowsocks，搭建ipv6 VPN，让ipv4上ipv6，下载速度提升到100M](https://www.polarxiong.com/archives/%E6%90%AD%E5%BB%BAipv6-VPN-%E8%AE%A9ipv4%E4%B8%8Aipv6-%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E6%8F%90%E5%8D%87%E5%88%B0100M.html)
 
 [一键脚本配置](ttp://tieba.baidu.com/p/5105380292)
+
+前面配置的无法使用，原因不明，又用下图的[配置](http://blog.csdn.net/hanshileiai/article/details/49302865)了一遍。
+![shadowsocks安装配置](\img\digitalOceam 科学上网\shadowsocks.png)
 ## 挖矿
 
 ### 第一步
