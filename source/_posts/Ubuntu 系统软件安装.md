@@ -207,12 +207,33 @@ pip install keras
 [下载](http://www.jetbrains.com/pycharm/download/)、然后到/bin下 ./pycharm.sh 即可
 激活时使用服务器网址： http://idea.imsxm.com/
 ##小知识
+
+
 ~代表你的/home/用户明目录
 假设你的用户名是x，那么~/就是/home/x/
 .是代表此目录本身，但是一般可以不写
 所以cd ~/. 和cd ~ 和cd ~/效果是一样的
 但是.后面有东西又是另外一个问题，点在文件名头部，代表一个隐藏文件
 ~/.local是你的主目录下一个.local的文件夹的路径，并且从.可以看出，这是一个饮藏文件，如果不用ls -a的话，一般ls是无法看到的apt:adobe-flashplugin?channel=$distro-partner
+
+###修改ｈｏｓｔ
+首先打开HOST文件
+
+sudo vim /etc/hosts
+
+添加你需要的域名
+
+216.239.37.99 www.google.com
+
+注意不要加上http://这样的协议前缀和/后缀等；
+
+编辑后，你需要重新启动一下你的网络。
+
+sudo /etc/init.d/networking restart
+
+###内核升级与更换顺序
+http://www.360doc.com/content/13/0629/15/12892305_296361964.shtml
+想把ｗｉｎｄｏｗｓ启动放在前面时调整　/boot/grub/grub.cfg　中启动顺序
 
 ###换源
 
