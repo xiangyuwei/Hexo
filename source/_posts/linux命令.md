@@ -1,4 +1,4 @@
-﻿#title
+#title
 
 title: linux 命令
 # 所属分类
@@ -152,6 +152,52 @@ scp -P 2222 root@www.vpser.net:/root/lnmp0.4.tar.gz /home/lnmp0.4.tar.gz
 ### 上传目录到服务器
 
 scp -r local_dir username@servername:remote_dir
+
+## [Ubuntu死机](http://www.jianshu.com/p/36fb9eed82a3)
+1. 进入TTY终端
+
+    Ctrl+Alt+F1进入TTY1终端字符界面, 输入用户名和密码以登录
+
+    输入top命令, 找到可能造成假死的进程, 用kill命令结束掉进程。然后Ctrl+Alt+F7回到桌面
+
+2. 直接注销用户
+
+Ctrl+Alt+F1进入TTY1终端字符界面, 输入用户名和密码以登录。
+
+然后执行以下的任意一个命令注销桌面重新登录。
+
+sudo pkill Xorg
+
+或者
+
+sudo restart lightdm
+
+。
+SysRq是一种叫做系统请求的东西, 按住 Alt-Print 的时候就相当于按住了SysRq键，这个时候输入的一切都会直接由 Linux 内核来处理，它可以进行许多低级操作。
+使用“魔法键”：Alt+SysRq + r,e,i,s,u,b（确实很好背，就是单词 busier (英语"更忙"的意思)的倒写）。
+
+## [apt安装默认位置](http://m.blog.chinaunix.net/uid-25436678-id-3853747.html)
+ 1.下载的软件存放位置
+       /var/cache/apt/archives
+
+     2.安装后软件默认位置
+     /usr/share
+
+     3.可执行文件位置 
+     /usr/bin
+
+     4.配置文件位置
+      /etc
+
+     5.lib文件位置
+    /usr/lib
+##[常见分区和个命令作用](http://m.blog.csdn.net/u012107143/article/details/54973028)
+ - /var  Variable files 软件运行所产生的数据存放目录，如日志、数据库文件、缓存文件。
+ - /etc  Etcetera 系统的所有配置文件，包括通过系统自动安装的程序的配置文件，如nginx，mysql等配置文件。
+ - - /bin  Binaries 普通命令，如文件操作。
+ -  - /mnt  Mount 一般是用于让用户自己挂载其他文件系统，挂载后装置图标不会出现在桌面窗口的左边栏。
+##[密码解锁登录密钥环](http://m.blog.csdn.net/zhangrelay/article/details/52856825)
+seahorse
 
 
 
