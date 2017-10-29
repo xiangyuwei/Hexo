@@ -215,6 +215,25 @@ pip install keras
 所以cd ~/. 和cd ~ 和cd ~/效果是一样的
 但是.后面有东西又是另外一个问题，点在文件名头部，代表一个隐藏文件
 ~/.local是你的主目录下一个.local的文件夹的路径，并且从.可以看出，这是一个饮藏文件，如果不用ls -a的话，一般ls是无法看到的apt:adobe-flashplugin?channel=$distro-partner
+###安装ｓｓｈ
+>>>
+sudo apt-get update  #更新一部分东西
+sudo apt-get install openssh-server #安装ssh，中间选择y
+sudo ps -e |grep ssh  #如果有sshd说明ssh服务已经启动，如果没有，输入sudo service ssh start启动
+sudo gedit /etc/ssh/sshd_config  #配置文件
+sudo apt-get install putty  #安装putty    
+
+从本地上传文件到服务器 从服务器下载文件到本地
+
+在终端输入
+
+“`
+scp -r 本地文件路径 服务器帐号名@服务器的adress:想要保存的路径 #从本地到服务器
+scp -r 服务器帐号名@服务器的adress:文件路径 本地保存路径 #从服务器到本地
+
+上述为本地和服务器端口号一致的时候，默认为22
+
+如果不一致，都是在-r之后加入 -P 端口号 即可
 
 ###修改ｈｏｓｔ
 首先打开HOST文件
