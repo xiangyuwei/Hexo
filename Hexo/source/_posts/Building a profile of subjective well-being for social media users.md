@@ -1,8 +1,8 @@
-﻿title: Michal Kosinski 隐私挖掘
+title: Michal Kosinski 隐私挖掘
 tags:
 - 隐私挖掘
 categeries:
--　总结
+- 总结
 
 
 
