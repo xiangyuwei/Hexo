@@ -66,10 +66,10 @@ pagination_dir: page
 theme: hexo-theme-next
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
+## Docs: https://hexo.io/docs/deployment.html http://github.com/xiangyuwei/xiangyuwei.github.io.git
 deploy:
   type: git
-  repository: http://github.com/xiangyuwei/xiangyuwei.github.io.git
+  repository: git@github.com:xiangyuwei/xiangyuwei.github.io.git
   branch: master
 
 
