@@ -1,8 +1,11 @@
-title： mysql错误集合
+title: mysql错误集合
+# 所属分类
 
 categories:
 
 - 编程
+
+# 标签(多个标签如下所示)
 
 tags:
 
