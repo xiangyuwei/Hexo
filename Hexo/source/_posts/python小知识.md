@@ -163,3 +163,159 @@ os.getcwd()——获得当前工作的目录
 [os模块常用命令](http://www.cnblogs.com/kaituorensheng/archive/2013/03/18/2965766.html)
 
   ### [文件和目录访问](http://blog.csdn.net/pipisorry/article/details/38964135)
+
+## 函数中×和××的区别
+* 函数接收参数为元组
+
+ 例如 
+
+def myfun(*args): #相当于 def myfun(1,2,3)    ==> args 就相当于（1,2,3）
+
+　　for a in args:
+
+　　　　print(a)
+
+** 表示函数接收参数为一个字典
+
+def myfun(**args) :#相当于 def myfun({a:1,b:2,c:3}) ==>args 就相当于{a:1,b:2,c:3}
+
+　　for k,v in args:
+
+　　　　print(k,":",v)
+
+## [查看帮助](http://blog.csdn.net/american199062/article/details/51444117)
+
+python中每个modul，每个class，每个def都是留有写doc的地方的，写没写是另一回事，可以用“对象名称.__doc__”查看。这是一个字符串，所以内容只能是字符串允许的内容。如果字符不足以满足说明需求，可能会加上web链接，或者专门的说明函数。
+
+你要查看的应该是
+import scipy
+print scipy.quiver.__doc__
+
+或者
+import scipy
+print help(scipy.quiver)
+
+
+## zip
+import numpy as np
+a=[1,2,3]
+b=[4,5,6,7]
+c=[8,9,10,11,12]
+zz=zip(a,b,c)
+print(zz)
+
+x,y,z=zip(*zz)
+print(x)
+print(y)
+print(z)
+
+输出：
+[(1, 4, 8), (2, 5, 9), (3, 6, 10)]
+(1, 2, 3)
+(4, 5, 6)
+(8, 9, 10)
+
+
+unzip后的列表b和c的值都少了。
+https://blog.csdn.net/csdn15698845876/article/details/73411541
+
+
+## pd.cut
+https://blog.csdn.net/cbbing/article/details/50721468
+
+## Python3pandas库transform 
+>import pandas as pd
+import numpy as np
+A=np.array([[1,2,3,4,5],[2,1,1,2,2],[1,2,3,4,5],[2,1,1,2,2],[1,2,3,4,5]])
+data=pd.DataFrame(A,index=['li','chen','wang','zhao','qian'],columns=['a','b','c','d','e'])
+print(data)
+
+
+      a  b  c  d  e
+li    1  2  3  4  5
+chen  2  1  1  2  2
+wang  1  2  3  4  5
+zhao  2  1  1  2  2
+qian  1  2  3  4  5
+
+
+key=['ss','kk','kk','ss','ss']  #给定index分组标记
+print(data.groupby(key).mean())  #mean是按key做分组的列均值
+
+   
+           a         b         c         d    e
+kk  1.500000  1.500000  2.000000  3.000000  3.5
+ss  1.333333  1.666667  2.333333  3.333333  4.0
+
+   
+
+data里每个元素位置的取值由transform函数的参数函数计算
+
+print(data.groupby(key).transform(np.mean))
+#data里每个位置元素取对应分组列的均值
+
+    
+
+             a         b         c         d    e
+li    1.333333  1.666667  2.333333  3.333333  4.0
+chen  1.500000  1.500000  2.000000  3.000000  3.5
+wang  1.500000  1.500000  2.000000  3.000000  3.5
+zhao  1.333333  1.666667  2.333333  3.333333  4.0
+qian  1.333333  1.666667  2.333333  3.333333  4.0
+
+    
+
+生成的tsf里，每个位置元素取值是data里“对应位置元素”按transform的“函数参数”运算（这里是’对应元素’减去’对应分组列的均值’）；x取值是data的每个位置元素，只不过x.mean中的mean方法作用范围由key决定
+
+>my_transform = lambda x : x-x.mean()  
+tsf=data.groupby(key).transform(my_transform)
+print(tsf)
+
+    
+
+             a         b         c         d    e
+li   -0.333333  0.333333  0.666667  0.666667  1.0
+chen  0.500000 -0.500000 -1.000000 -1.000000 -1.5
+wang -0.500000  0.500000  1.000000  1.000000  1.5
+zhao  0.666667 -0.666667 -1.333333 -1.333333 -2.0
+qian -0.333333  0.333333  0.666667  0.666667  1.0
+https://blog.csdn.net/cymy001/article/details/78300775
+
+##  groupby+agg
+从0.20.1开始，pandas引入了agg函数，它提供基于列的聚合操作。而groupby可以看做是基于行，或者说index的聚合操作。
+
+从实现上看，groupby返回的是一个DataFrameGroupBy结构，这个结构必须调用聚合函数（如sum）之后，才会得到结构为Series的数据结果。
+而agg是DataFrame的直接方法，返回的也是一个DataFrame。当然，很多功能用sum、mean等等也可以实现。但是agg更加简洁, 而且传给它的函数可以是字符串，也可以自定义，参数是column对应的子DataFrame
+https://segmentfault.com/a/1190000012394176
+
+## 特征选择 (feature_selection)
+
+    特征是否发散：如果一个特征不发散，例如方差接近于0，也就是说样本在这个特征上基本上没有差异，这个特征对于样本的区分并没有什么用。
+    特征与目标的相关性：这点比较显见，与目标相关性高的特征，应当优选选择。除移除低方差法外，本文介绍的其他方法均从相关性考虑。
+https://www.cnblogs.com/stevenlk/p/6543628.html
+
+##  Bagging（Bootstrap aggregating）、随机森林（random forests）、AdaBoost
+https://blog.csdn.net/xlinsist/article/details/51475345
+
+## 列 ——> 索引
+df.set_index('date')
+df.set_index('date', inplace=True) # column 改为 index
+## 索引 ——> 列
+df['index'] = df.index
+df.reset_index(level=0, inplace=True)
+df.reset_index(level=['tick', 'obs'])
+
+## loc——通过行标签索引行数据
+loc扩展——索引某列
+ 
+print df.loc[:,['c']]
+
+iloc——通过行号获取行数据
+
+df[]直接索引
+
+    直接索引索引的是列，方口号里面的内容一般是列索引名。也可以接受一个列名组成的list来接受多个列名
+    索引slice对象，索引的是行，df[0:1]
+
+http://www.cnblogs.com/daozhongshu/archive/2018/04/30/8973439.html
+

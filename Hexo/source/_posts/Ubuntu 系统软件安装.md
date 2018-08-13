@@ -362,3 +362,180 @@ sudoapt-getinstalltexmaker  LaTeX 文档需要一个编辑器
 sudo apt-get install latex-cjk-all  字体包中包含bsmi，bkai，gkai，gbsn四种中文字体。bsmi和bkai是Big5编码的宋体和楷体字；后两者gkai和gbsn分别处理简体中文楷体字和宋体字
 
 ```
+
+## 安装ＭｙＳＱＬ
+在[官网](https://dev.mysql.com/downloads/file/?id=474212)下载系统对应版本相关安装包
+community 是社区版本，开源,DEB Bundle类型就是离线deb安装包，把所有软件打包进去了,DEB Package的，这个其实就是deb文件，不过也是在线安装的形式，所以文件很小，不建议选择
+安装过程参考https://www.cnblogs.com/jpfss/p/7944622.html
+> sudo dpkg -i mysql-apt-config_0.8.6-1_all.deb
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo apt-get install -f
+
+安装好之后会创建如下目录：
+
+数据库目录：/var/lib/mysql/ 
+
+配置文件：/usr/share/mysql（命令及配置文件） ，/etc/mysql（如：my.cnf）
+
+相关命令：/usr/bin(mysqladmin mysqldump等命令) 和/usr/sbin
+
+启动脚本：/etc/init.d/mysql（启动脚本文件mysql的目录）
+
+#服务启动后端口查询sudo netstat -anp | grep mysql
+
+复制代码
+
+#服务管理#启动sudo service mysql start#停止sudo service mysql stop#服务状态sudo service mysql status
+
+复制代码
+
+#连接数据库mysql -h 127.0.0.1 -P 3306 -uroot -p123456#-h为远程IP，-P为端口号，-u为用户名，-p为密码
+
+#测试SQLshow databases;
+#首先使用以下命令删除MySQL服务器：sudo apt-get remove mysql-server#然后，删除随MySQL服务器自动安装的任何其他软件：sudo apt-get autoremove#卸载其他组件：sudo apt-get remove <<package-name>>#查看从MySQL APT存储库安装的软件包列表：dpkg -l | grep mysql | grep ii
+
+
+因为安装过程密码选择sha2加密，导致workbench连接不上，解决过程参考下列文字
+
+>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'
+
+http://www.myexception.cn/mysql/2211995.html
+
+https://my.oschina.net/leejun2005/blog/678202
+
+
+
+
+## python mysqlclient
+
+MySQLdb 名字改为了mysqlclient,下载mysqlclient　时出错：
+>gcc -pthread -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,3,12,'final',0) -D__version__=1.3.12 -I/usr/include/mysql -I/home/wxy/anaconda2/envs/python34/include/python3.4m -c _mysql.c -o build/temp.linux-x86_64-3.4/_mysql.o
+    _mysql.c: In function ‘_mysql_ConnectionObject_ping’:
+    _mysql.c:1894:3: error: unknown type name ‘my_bool’
+       my_bool recon = reconnect;
+       ^
+    error: command 'gcc' failed with exit status 1
+    
+    ----------------------------------------
+Command "/home/wxy/anaconda2/envs/python34/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-7mflijl8/mysqlclient/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-mcyvcf3v-record/install-record.txt --single-version-externally-managed --compile" failed with error code 1 in /tmp/pip-build-7mflijl8/mysqlclient/
+You are using pip version 9.0.1, however version 10.0.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+
+在网上查了各种资料，都是要下载安装
+sudo apt-get install python-dev 
+sudo apt-get install gcc libffi-dev
+sudo apt-get install  openssl
+sudo apt-get install libssl-dev
+
+都不对，甚至用easy_install mysqlclient也出错
+
+>Searching for mysqlclient
+Reading https://pypi.python.org/simple/mysqlclient/
+Downloading https://files.pythonhosted.org/packages/6f/86/bad31f1c1bb0cc99e88ca2adb7cb5c71f7a6540c1bb001480513de76a931/mysqlclient-1.3.12.tar.gz#sha256=2d9ec33de39f4d9c64ad7322ede0521d85829ce36a76f9dd3d6ab76a9c8648e5
+Best match: mysqlclient 1.3.12
+Processing mysqlclient-1.3.12.tar.gz
+Writing /tmp/easy_install-jlo_d443/mysqlclient-1.3.12/setup.cfg
+Running mysqlclient-1.3.12/setup.py -q bdist_egg --dist-dir /tmp/easy_install-jlo_d443/mysqlclient-1.3.12/egg-dist-tmp-4972dlv6
+_mysql.c: In function ‘_mysql_ConnectionObject_ping’:
+_mysql.c:1894:3: error: unknown type name ‘my_bool’
+   my_bool recon = reconnect;
+   ^
+error: Setup script exited with error: command 'gcc' failed with exit status 1
+
+最终用mysql.c:1894:3: error: unknown type name ‘my_bool’
+   my_bool recon = reconnect;搜索，找到[一篇文章](https://github.com/PyMySQL/mysqlclient-python/issues/218),
+> pip install git+https://github.com/PyMySQL/mysqlclient-python.git解决了问题，好像是权限过期问题。
+
+'搜索问题时应该找到最小的那个问题，一起查，不要查大类'
+
+##  python 环境切换(Python多版本切换工具-Pyenv\virtualenv及Anaconda科学计算环境的配置)
+
+https://segmentfault.com/a/1190000004020387
+http://www.jb51.net/article/137786.htm
+
+> 
+
+    # 创建一个名为python34的环境，指定Python版本是3.4（不用管是3.4.x，conda会为我们自动寻找3.4.x中的最新版本）
+    conda create --name python34 python=3.4
+
+    # 此时，再次输入
+    python --version
+    # 可以得到`Python 3.4.5 :: Anaconda 4.1.1 (64-bit)`，即系统已经切换到了3.4的环境
+
+    # 如果想返回默认的python 2.7环境，运行
+    deactivate python34 # for Windows
+    source deactivate python34 # for Linux & Mac
+
+    # 删除一个已有的环境
+    conda remove --name python34 --all
+
+    # 安装好后，使用activate激活某个环境
+    activate python34 # for Windows
+    source activate python34 # for Linux & Mac
+    # 激活后，会发现terminal输入的地方多了python34的字样，实际上，此时系统做的事情就是把默认2.7环境从PATH中去除，再把3.4对应的命令加入PATH
+
+用户安装的不同python环境都会被放在目录~/anaconda/envs下，可以在命令中运行conda info -e查看已安装的环境，当前被激活的环境会显示有一个星号或者括号。
+
+说明：有些用户可能经常使用python 3.4环境，因此直接把~/anaconda/envs/python34下面的bin或者Scripts加入PATH，去除anaconda对应的那个bin目录。这个办法，怎么说呢，也是可以的，但总觉得不是那么elegant
+
+onda的一些常用操作如下：
+
+ >   # 查看当前环境下已安装的包
+    conda list
+
+    # 查看某个指定环境的已安装包
+    conda list -n python34
+
+    # 查找package信息
+    conda search numpy
+
+    # 安装package
+    conda install -n python34 numpy
+    # 如果不用-n指定环境名称，则被安装在当前活跃环境
+    # 也可以通过-c指定通过某个channel安装
+
+    # 更新package
+    conda update -n python34 numpy
+
+    # 删除package
+    conda remove -n python34 numpy
+
+## [Linux中/var空间不足的解决办法](https://blog.csdn.net/hqzhon/article/details/49027351)
+>mv /var/www /home   #将var下的www目录移动到home或者其他空间富足的区块中
+ln －s  /home/www /var  #/var/www指向/home/www，这样www目录将不再占用/var目录的空间
+
+Linux软链接：它只会在你选定的位置上生成一个文件的镜像，不会占用磁盘空间，命令：ln －s xxx
+Linux硬链接：它会在你选定的位置上生成一个和源文件大小相同的文件，命令：ln xxx
+
+  
+
+无论是软链接还是硬链接，文件都保持同步变化。
+因此，使用软链接可以将/var目录下占用空间较大的目录移动到富足的空间区块（如/home）下，使得/var下不再占用空间
+
+## 配置http代理
+>    export http_proxy="http://127.0.0.1:8084"  
+    wget www.google.com  
+
+>#访问https加密的需要设置https_proxy变量  
+export https_proxy="http://127.0.0.1:8084"  
+wget https://www.google.com 
+[ubuntu开启http和socks全局代理测试与检验](http://govfate.iteye.com/blog/2069022)
+
+### 安装polipo
+> apt-get install polipo
+  sudo gedit /etc/polipo/config
+  sudo /etc/init.d/polipo restart
+配置文件中添加：
+socksParentProxy = "127.0.0.1:1080"
+socksProxyType = socks5
+proxyAddress = "0.0.0.0"
+proxyPort = 17070
+
+验证是否工作：
+>export http_proxy="http://127.0.0.1:8123/"
+curl ifconfig.me
+
+[hadowsocks和polipo配置全局代理](tps://blog.denghaihui.com/2017/10/10/shadowsocks-polipo/)
+
+

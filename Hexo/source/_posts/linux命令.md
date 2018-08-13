@@ -357,3 +357,289 @@ tar 命令详解
 　　# tar -cf all.tar *.jpg
 
 　　这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文
+
+## 本地共享
+ sudo smbpasswd -a wxy
+
+## tail
+1．命令格式;
+
+tail[必要参数][选择参数][文件]  
+
+2．命令功能：
+
+用于显示指定文件末尾内容，不指定文件时，作为输入信息进行处理。常用查看日志文件。
+
+3．命令参数：
+
+-f 循环读取
+-q 不显示处理信息
+-v 显示详细的处理信息
+-c<数目> 显示的字节数
+-n<行数> 显示行数
+--pid=PID 与-f合用,表示在进程ID,PID死掉之后结束.
+-q, --quiet, --silent 从不输出给出文件名的首部
+-s, --sleep-interval=S 与-f合用,表示在每次反复的间隔休眠S秒
+
+## more 
+more
+作用：类似cat，不过会以一页一页的显示方便使用者一页页阅读
+使用方法：more [选项] 文件名
+
+## Linux 终端复用神器Tmux
+
+## pychram 配置代码到服务器时ｍａｐ中服务器是新建文件夹名字，与ｃｏｎｎｎｅｃｔｉｏｎ中的路径连起来才是完整路径名
+
+## winscp类似的软件Fillzilla
+
+## 查看图片命令eog 
+
+## 关机
+注销或者重启一次ubuntu桌面。
+
+$sudo  pkill  Xorg
+
+## 在当前目录下找出占用空间最大的前10大文件
+了解三个常用命令：
+
+    du : 计算出单个文件或者文件夹的磁盘空间占用.
+    sort : 对文件行或者标准输出行记录排序后输出.
+    head : 输出文件内容的前面部分.
+
+du：
+
+-a：显示目录占用空间的大小，还要显示其下目录占用空间的大小
+sort：
+
+-n  : 按照字符串表示的数字值来排序
+
+-r ：按照反序排列
+
+head :
+
+-n : 取出前多少行
+
+
+以上的问题可以使用命令： du -a | sort -n -r | head -n 10
+ du -h -x --max-depth=1可以查看每个目录下文件 文件夹的占用体积。
+du -sh * | sort -n 统计当前文件夹(目录)大小，并按文件大小排序
+
+du -sk filename 查看指定文件大小
+
+## linux系统下/var空间不足的解决办法
+
+mv /var/cuda-repo-8-0-local-ga2 /home
+
+ln -s /home/cuda-repo-8-0-local-ga2 /var
+
+>sudo mv /var/tmp /home/var_tmp
+ sudo mv var_tmp tmp 改文件名　mv 命令 将文件移动，目标地址如果加 / 就 代表文件夹，如果没有 / 就会重新命名 
+ sudo ln -s /home/tmp /var
+
+## 文件末尾星号
+ls -F /bin/
+你会看到所有可执行文件后面都带有*  
+这些特殊符号有什么含义？
+*  :  可执行文件
+/  :  目录
+=  : 套接字
+@ : 符号链接
+|   : 管道文件
+
+
+到了这，问题已经明白了大部分，但是为什么有的系统上只是执行了ls就会显示出这个结尾的特殊符号？并没有加-F呢！ 阿铭从公司的一台服务器上获得了答案：cat  ~/.bashrc  //其中有两行
+unalias ls
+alias ls='ls -Fa'
+
+
+## 合并压缩文件
+>cat file* > file
+
+## md5值校验
+
+>md5sum file1 file2 
+
+## 添加用户
+首先用adduser命令添加一个普通用户，命令如下： 
+
+### adduser tommy 
+//添加一个名为tommy的用户
+#passwd tommy   //修改密码
+Changing password for user tommy.
+New UNIX password:     //在这里输入新密码
+Retype new UNIX password:  //再次输入新密码
+passwd: all authentication tokens updated successfully.
+
+2、赋予root权限 
+
+方法一： 修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉
+
+### Allows people in group wheel to run all commands
+%wheel    ALL=(ALL)    ALL
+
+然后修改用户，使其属于root组（wheel），命令如下：
+
+### usermod -g root tommy
+
+修改完毕，现在可以用tommy帐号登录，然后用命令 su - ，即可获得root权限进行操作。
+
+方法二： 修改 /etc/sudoers 文件，找到下面一行，在root下面添加一行，如下所示：
+
+### Allow root to run any commands anywhere
+root    ALL=(ALL)     ALL
+tommy   ALL=(ALL)     ALL
+
+
+修改完毕，现在可以用tommy帐号登录，然后用命令 su - ，即可获得root权限进行操作。
+
+
+## 按时间顺序查看文件
+
+ ls -alt # 按修改时间排序
+> ls --sort=time -la # 等价于> ls -alt
+> ls -alc # 按创建时间排序
+> ls -alu # 按访问时间排序
+ 
+# 以上均可使用-r实现逆序排序
+> ls -alrt # 按修改时间排序
+> ls --sort=time -lra # 等价于> ls -alrt
+> ls -alrc # 按创建时间排序
+
+> ls -alru # 按访问时间排序
+
+
+## 后台命令
+1）&命令
+
+          功能：加在一个命令的最后，可以把这个命令放在后台执行
+
+（2）nohup命令
+
+          功能：不挂断的运行命令
+
+        
+
+2、查看当前后台运行的命令
+
+有两个命令可以用，jobs和ps,区别是jobs用于查看当前终端后台运行的任务，换了终端就看不到了。而ps命令用于查看瞬间进程的动态，可以看到别的终端运行的后台进程。
+
+（1）jobs命令
+
+        功能：查看当前终端后台运行的任务
+
+       
+
+       jobs -l选项可显示当前终端所有任务的PID，jobs的状态可以是running，stopped，Terminated。+ 号表示当前任务，- 号表示后一个任务。
+
+（2）ps命令
+
+          功能：查看当前的所有进程
+
+          
+
+         ps -aux | grep "test.sh"    #a:显示所有程序  u:以用户为主的格式来显示   x:显示所有程序，不以终端机来区分
+
+
+3、关闭当前后台运行的命令
+
+      kill命令：结束进程
+
+     （1）通过jobs命令查看jobnum，然后执行   kill %jobnum
+
+     （2）通过ps命令查看进程号PID，然后执行  kill %PID
+
+       如果是前台进程的话，直接执行 Ctrl+c 就可以终止了
+
+
+4、前后台进程的切换与控制
+
+     （1）fg命令
+
+       功能：将后台中的命令调至前台继续运行
+
+       如果后台中有多个命令，可以先用jobs查看jobnun，然后用 fg %jobnum 将选中的命令调出。
+
+     （2）Ctrl + z 命令
+
+       功能：将一个正在前台执行的命令放到后台，并且处于暂停状态
+
+     （3）bg命令
+
+       功能：将一个在后台暂停的命令，变成在后台继续执行
+
+       如果后台中有多个命令，可以先用jobs查看jobnum，然后用 bg %jobnum 将选中的命令调出继续执行。
+
+## 内存
+
+1，Linux下可以在/proc/cpuinfo中看到每个cpu的详细信息。但是对于双核的cpu，在cpuinfo中会看到两个cpu。常常会让人误以为是两个单核的cpu。
+其实应该通过Physical Processor ID来区分单核和双核。而Physical Processor ID可以从cpuinfo或者dmesg中找到. flags 如果有 ht 说明支持超线程技术 判断物理CPU的个数可以查看physical id 的值，相同则为同一个物理CPU
+
+2，查看内存大小:
+cat /proc/meminfo |grep MemTotal
+free 会以 KB 为单位显示信息。free 同样提供给我们 b (B), -k (KB), -m (MB), -g (GB) and –tera (TB)这些单位。要显示我们想要的单位，只要选择一个并在 free 后面跟上。下面一个是以 MB 为单位的输出样例。
+我们想要每3秒统计一次内存利用率并且适于人类可读，那么就像这样做:
+
+$ free -hs 3
+
+
+3，其他一些可以查看详细信息的命令和方法:
+uname -a               # 查看内核//的信息命令
+head -n 1 /etc/issue   # 查看版本，是数字1不是字母L
+cat /proc/cpuinfo      # 查看的信息命令
+hostname               # 查看计算机名的linux系统信息命令
+lspci -tv              # 列出所有PCI设备
+lsusb -tv              # 列出所有USB设备的linux系统信息命令
+lsmod                  # 列出加载的内核模块
+env                    # 查看环境变量资源
+free -m                # 查看内存使用量和交换区使用量
+df -h                  # 查看各分区使用情况
+du -sh         # 查看指定目录的大小
+grep MemTotal /proc/meminfo   # 查看内存总量
+grep MemFree /proc/meminfo    # 查看空闲内存量
+uptime                 # 查看系统运行时间、用户数、负载
+cat /proc/loadavg      # 查看系统负载磁盘和分区
+mount | column -t      # 查看挂接的分区状态
+fdisk -l               # 查看所有分区
+swapon -s              # 查看所有
+hdparm -i /dev/hda     # 查看磁盘参数(仅适用于)
+dmesg | grep IDE       # 查看启动时检测状况网络
+ifconfig               # 查看所有的属性
+iptables -L            # 查看防火墙设置
+route -n               # 查看路由表
+netstat -lntp          # 查看所有监听端口
+netstat -antp          # 查看所有已经建立的连接
+netstat -s             # 查看网络统计信息进程
+ps -ef                 # 查看所有进程
+top                    # 实时显示用户
+w                      # 查看活动用户
+id             # 查看指定用户信息
+last                   # 查看日志
+cut -d: - /etc/passwd   # 查看系统所有用户
+cut -d: - /etc/group    # 查看系统所有组
+crontab -l             # 查看当前用户的计划任务服务
+chkconfig –list       # 列出所有系统服务
+chkconfig –list | grep on    # 列出所有启动的系统服务程序
+rpm -qa                # 查看所有安装的软件包
+cat /proc/cpuinfo ：查看CPU相关参数的linux系统命令
+cat /proc/partitions ：查看linux硬盘和分区信息的系统信息命令
+cat /proc/meminfo ：查看linux系统内存信息的linux系统命令
+cat /proc/version ：查看版本，类似uname -r
+cat /proc/ioports ：查看设备
+cat /proc/interrupts ：查看中断
+cat /proc/pci ：查看pci设备的信息
+cat /proc/swaps ：查看所有swap分区的信息
+
+
+##  ps aux
+
+显示其他用户启动的进程（a）
+查看系统中属于自己的进程（x）
+启动这个进程的用户和它启动的时间（u）
+
+## pts
+
+虚拟终端
+
+##scp XXX.txt XXX@192.168.1.50:/home/XXX/data
+内网ip而不是路由器ip
+
