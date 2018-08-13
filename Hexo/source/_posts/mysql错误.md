@@ -1,4 +1,4 @@
-title： mysql 错误集合
+title： mysql错误集合
 
 categories:
 

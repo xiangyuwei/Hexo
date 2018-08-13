@@ -1,5 +1,5 @@
 #title
-title:远程登录jupyter notebook
+title: 远程登录jupyter notebook
 
 
 categories:
