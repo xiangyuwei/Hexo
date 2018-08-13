@@ -1,10 +1,12 @@
-title: jupyter　使用
-catogories:
--软件使用
+title: jupyter使用
 
+catogories:
+
+- 软件使用
 
 tags:
--　jupyter
+
+- jupyter
 
 
 -------------

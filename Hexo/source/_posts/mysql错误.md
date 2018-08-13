@@ -1,10 +1,12 @@
 title： mysql 错误集合
+
 tags:
 
 - 编程
 - mysql
  
 categories:
+
 - 编程
 
 -------

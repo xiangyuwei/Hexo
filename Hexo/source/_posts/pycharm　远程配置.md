@@ -1,6 +1,8 @@
 title: pycharm　远程配置
-catgories:
---pycharm
+
+categories:
+
+- pycharm
 
 
 -----
