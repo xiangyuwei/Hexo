@@ -76,3 +76,10 @@ sudo gedit /etc/network/interfaces
 ## DNS 问题导致不能上网
 sudo gedit /etc/resolv.conf
 插入　nameserver 202.112.144.236
+
+## var/tmp 文件过大，磁盘空间满
+mkinitramfs× 此类文件过多
+用rm -rf mkinitramfs* 删除
+
+http://forum.ubuntu.org.cn/viewtopic.php?p=3189497
+lsof看看有没有正在使用
