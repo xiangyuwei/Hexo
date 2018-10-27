@@ -2,7 +2,7 @@ title: Ubuntu 死机原因
 
 tags:
 
--- ubuntu
+- ubuntu
 
 
 

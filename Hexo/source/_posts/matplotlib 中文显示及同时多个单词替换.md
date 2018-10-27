@@ -1,7 +1,7 @@
 title: matplotlib 中文显示及同时多个单词替换
 
 tags:
--- python
+- python
 
 
 -----------
