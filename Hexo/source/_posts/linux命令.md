@@ -600,7 +600,7 @@ tommy   ALL=(ALL)     ALL
 
 2，查看内存大小:
 cat /proc/meminfo |grep MemTotal
-free 会以 KB 为单位显示信息。free 同样提供给我们 b (B), -k (KB), -m (MB), -g (GB) and –tera (TB)这些单位。要显示我们想要的单位，只要选择一个并在 free 后面跟上。下面一个是以 MB 为单位的输出样例。
+'free' 会以 KB 为单位显示信息。free 同样提供给我们 b (B), -k (KB), -m (MB), -g (GB) and –tera (TB)这些单位。要显示我们想要的单位，只要选择一个并在 free 后面跟上。下面一个是以 MB 为单位的输出样例。
 我们想要每3秒统计一次内存利用率并且适于人类可读，那么就像这样做:
 
 $ free -hs 3
@@ -664,7 +664,7 @@ cat /proc/swaps ：查看所有swap分区的信息
 
 虚拟终端
 
-##scp XXX.txt XXX@192.168.1.50:/home/XXX/data
+## scp XXX.txt XXX@192.168.1.50:/home/XXX/data
 内网ip而不是路由器ip
 
 

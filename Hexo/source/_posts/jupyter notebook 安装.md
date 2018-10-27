@@ -31,3 +31,16 @@ notebook同时有两个版本时，可在kernel文件夹中，例如路径为D:\
 
 可把/envs文件下的python拷贝到此路径中。
 <!-- more -->
+
+
+# 跟新源
+http://so.kszixue.com/?id=20
+
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+show_channel_urls: true
+
+
+例 conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/

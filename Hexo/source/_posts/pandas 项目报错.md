@@ -1,5 +1,5 @@
 
-title: pandas
+title: pandas使用
 
 # 所属分类
 
@@ -100,3 +100,7 @@ https://www.cnblogs.com/qcloud1001/p/7513982.html
 
 ## plot是一种将所有列及其标签进行绘制的简便方法
 
+## value_counts()
+是一种查看表格某列中有多少个不同值的快捷方法，并计算每个不同值有在该列中有多少重复值。
+value_counts()是Series拥有的方法，一般在DataFrame中使用时，需要指定对哪一列或行使用
+https://www.jianshu.com/p/f773b4b82c66

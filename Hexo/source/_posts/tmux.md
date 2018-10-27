@@ -28,7 +28,7 @@ tmux 中直接通过默认前缀 ctrl + b 之后输入对应命令来操作
         tmux select-pane -[UDLR] 在指定的方向选择下一个 pane
 
 
-###基本操作
+### 基本操作
     ? 列出所有快捷键；按q返回
     d 脱离当前会话,可暂时返回Shell界面
     s 选择并切换会话；在同时开启了多个会话时使用
@@ -206,7 +206,12 @@ Set easier window split keys
 首先，在更改了.tmux.conf后，在tmux里的快捷键没有变化。查找后发现是tmux只有在新建session的时候，才会去找tmux.conf文件。所以说，之前创建的那些session都没有参考tmux.conf. 就用tmux ls  tmux kill-session -a只保留当前session。再删除当前session 'tmux kill-session -t XX'。这下删除了所有创建好的session。
 
 
+## 放大字体
 
+Ctrl+shift+“+”
+
+## 黏贴
+要按住shift,再右键
 ## 参考文献
 
 

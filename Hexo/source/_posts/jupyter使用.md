@@ -98,3 +98,18 @@ Ctrl-S : 文件存盘
 Shift : 忽略
 Up : 光标上移或转入上一单元
 Down :光标下移或转入下一单元
+
+## 增加kernel
+首先，在anaconda中切换到myPython2环境下，确认是否安装了ipykernel这个包，如果没有则安装。
+然后，在这个环境下输入一下命令
+
+
+
+```
+#xxx是在jupyter中显示的名字，建议使用环境的名字，但是不一样也没关系
+# 我这里和环境名字一样，使用myPython2这个名字
+python -m ipykernel install --name XXXX
+
+---------------------
+
+https://blog.csdn.net/wj1066/article/details/72891667?utm_source=copy 

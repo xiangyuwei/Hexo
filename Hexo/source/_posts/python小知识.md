@@ -319,3 +319,24 @@ df[]直接索引
 
 http://www.cnblogs.com/daozhongshu/archive/2018/04/30/8973439.html
 
+## 函数注解
+
+当使用Python编写复杂的函数时，我们常常为没有合适的提示而苦恼。函数注解可以帮助我们解决这个问题。
+
+def add(a: int, b: int) -> int:
+    return a + b
+
+## jieba 分词及词性表
+ jieba.load_userdict(file_name) # file_name为自定义词典的路径 （https://blog.csdn.net/li_31415/article/details/48660073）
+
+词性表：https://blog.csdn.net/huludan/article/details/52727298
+
+## 类型和运算
+解码：b'\xe4\xbd\xa0\xe5\xa5\xbd'.decode()
+b'\xc4\xe3\xba\xc3'.decode('gb2312')
+b'\xff\xfe`O}Y'.decode('utf16')
+b'\x60\x4f\x7d\x59'.decode('utf16')
+
+
+链接：https://www.jianshu.com/p/f6d90d53027a
+

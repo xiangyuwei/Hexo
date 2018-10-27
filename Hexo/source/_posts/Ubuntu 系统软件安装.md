@@ -142,7 +142,7 @@ https://docs.continuum.io/anaconda/install
 添加环境变量
 ```
 gedit ~/.bashrc
-#added by 
+  #added by 
 import PATH="/home/XXX/bin:$PATH"
 soure ~/.bashrc
 ```
@@ -164,13 +164,13 @@ import tensorflow as tf
 如果没有报错说明安装成功。
 装完成后，使用如下命令生成一个名为tensorflow的conda环境，根据python版本选择正确的命令执行即可
 
-# Python 2.7
+ Python 2.7
 $ conda create -n TensorFlow python=2.7
 
-# Python 3.4
+ Python 3.4
 $ conda create -n TensorFlow python=3.4
 
-# Python 3.5
+ Python 3.5
 $ conda create -n TensorFlow python=3.5
 使用如下命令进入TensorFlow环境：
 source activate tensorflow
@@ -188,7 +188,7 @@ source activate tensorflow
 >>> tf.__path__
 ['/usr/local/ml/anaconda2/envs/tensorflow/lib/python2.7/site-packages/tensorflow']
 
-更新tensorflow
+## 更新tensorflow
  pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.1-cp27-none-linux_x86_64.whl
 pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.1.0-cp27-none-linux_x86_64.whl
 安装theano和keras
@@ -200,7 +200,7 @@ conda install mingw libpython
 conda install theano
 pip install keras
 
-## 安装google浏览器
+
 
 
 ## 安装pycharm
@@ -254,8 +254,8 @@ sudo /etc/init.d/networking restart
 http://www.360doc.com/content/13/0629/15/12892305_296361964.shtml
 想把ｗｉｎｄｏｗｓ启动放在前面时调整　/boot/grub/grub.cfg　中启动顺序
 
-### 换源
 
+## 安装谷歌浏览器
 这个[博客](http://blog.csdn.net/u011557212/article/details/53233944)比较全.
 1.在终端中，输入以下命令：
 
@@ -285,6 +285,7 @@ sudo apt-get install google-chrome-stable
 
 将会启动谷歌 Chrome 浏览器
 
+## 换源
 阿里云
 
 
@@ -325,11 +326,21 @@ udo cp /etc/apt/sources.list /etc/apt/sources.list_backup
 然后，刷新列表:
 sudo apt-get update
  **注意：一定要执行刷新**
+### 自动换源脚本
+#! /bin/bash 
 
-### 显示所有文件（包含隐藏文件）
+cp /etc/apt/sources.list /etc/apt/sources.list.bak 
+echo deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse >> /etc/apt/sources.list 
+echo deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse >> /etc/apt/sources.list
+echo deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse >> /etc/apt/sources.list 
+echo deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse >> /etc/apt/sources.list 
+apt update
+
+上述脚本保存在XXX.sh中，bash XXX.sh 执行
+## 显示所有文件（包含隐藏文件）
 ls -a
 
-### 只显示隐藏文件
+## 只显示隐藏文件
 l.
 或者
 ls -d .*
@@ -382,18 +393,19 @@ sudo apt-get install -f
 
 启动脚本：/etc/init.d/mysql（启动脚本文件mysql的目录）
 
-#服务启动后端口查询sudo netstat -anp | grep mysql
+服务启动后端口查询
+sudo netstat -anp | grep mysql
 
-复制代码
+服务管理#启动
+sudo service mysql start#停止sudo service mysql stop#服务状态sudo service mysql status
 
-#服务管理#启动sudo service mysql start#停止sudo service mysql stop#服务状态sudo service mysql status
+连接数据库
+mysql -h 127.0.0.1 -P 3306 -uroot -p123456#-h为远程IP，-P为端口号，-u为用户名，-p为密码
 
-复制代码
+测试
+SQLshow databases;
 
-#连接数据库mysql -h 127.0.0.1 -P 3306 -uroot -p123456#-h为远程IP，-P为端口号，-u为用户名，-p为密码
-
-#测试SQLshow databases;
-#首先使用以下命令删除MySQL服务器：sudo apt-get remove mysql-server#然后，删除随MySQL服务器自动安装的任何其他软件：sudo apt-get autoremove#卸载其他组件：sudo apt-get remove <<package-name>>#查看从MySQL APT存储库安装的软件包列表：dpkg -l | grep mysql | grep ii
+首先使用以下命令删除MySQL服务器：sudo apt-get remove mysql-server#然后，删除随MySQL服务器自动安装的任何其他软件：sudo apt-get autoremove#卸载其他组件：sudo apt-get remove <<package-name>>#查看从MySQL APT存储库安装的软件包列表：dpkg -l | grep mysql | grep ii
 
 
 因为安装过程密码选择sha2加密，导致workbench连接不上，解决过程参考下列文字
@@ -479,7 +491,7 @@ http://www.jb51.net/article/137786.htm
 
 说明：有些用户可能经常使用python 3.4环境，因此直接把~/anaconda/envs/python34下面的bin或者Scripts加入PATH，去除anaconda对应的那个bin目录。这个办法，怎么说呢，也是可以的，但总觉得不是那么elegant
 
-onda的一些常用操作如下：
+conda的一些常用操作如下：
 
  >   # 查看当前环境下已安装的包
     conda list
@@ -501,6 +513,9 @@ onda的一些常用操作如下：
     # 删除package
     conda remove -n python34 numpy
 
+### 查看已有环境
+
+conda env list
 ## [Linux中/var空间不足的解决办法](https://blog.csdn.net/hqzhon/article/details/49027351)
 >mv /var/www /home   #将var下的www目录移动到home或者其他空间富足的区块中
 ln －s  /home/www /var  #/var/www指向/home/www，这样www目录将不再占用/var目录的空间
