@@ -554,3 +554,36 @@ curl ifconfig.me
 [hadowsocks和polipo配置全局代理](tps://blog.denghaihui.com/2017/10/10/shadowsocks-polipo/)
 
 
+## 安装百度网盘
+Firefox 插件地址 https://addons.mozilla.org/zh-CN/firefox/addon/baidu-pan-exporter/
+
+安装后重启Firefox，然后百度云下载界面就会多出一个选项：导出下载 
+
+需要下载aria2 : sudo apt-get install aria2
+
+下载时，选中要下载的文件，导出下载-文本导出，复制生成的内容，然后在终端输入，回车就开始下载了。
+
+## 安装ＳＰＳＳ
+
+已经在百度云保存了spss的安装包和证书
+下载好IBM.SPSS.Statistics.v22.Linux-EQUiNOX，这个网上到处都是。
+
+解压后在终端进入解压好的文件夹，在终端中运行sudo sh./SPSS_Statistics_22_Lx.bin以运行安装文件
+
+激活首先需要破解了的注册文件，文件名称为lservrc，在网上搜SPSSv22破解就可以搜到。然后使用root用户权限进入到/opt/IBM/SPSS/Statistics/22/bin目录，将原本的lservrc文件替换为破解以后的即可，再次运行SPSS软件就会发现试用期提示不见了，说明激活成功。​
+在终端中运行 cd /opt/IBM/SPSS/Statistics/22/bin进入程序所在目录，
+
+然后运行./spssclient打开软件
+
+参考：
+https://blog.csdn.net/alis_xt/article/details/52891576
+数据分析软件 IBM SPSS Statistics 25 for macOS&Windows&Linux https://www.luochenzhimu.com/archives/794.html
+##gephi
+
+https://blog.csdn.net/laoyang360/article/details/53616720
+
+
+
+
+
+
